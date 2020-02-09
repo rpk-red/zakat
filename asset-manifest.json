@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/zakat/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/zakat/static/js/main.c8aad1d3.chunk.js",
-    "main.js.map": "/zakat/static/js/main.c8aad1d3.chunk.js.map",
+    "main.js": "/zakat/static/js/main.e167318b.chunk.js",
+    "main.js.map": "/zakat/static/js/main.e167318b.chunk.js.map",
     "runtime-main.js": "/zakat/static/js/runtime-main.4b935a40.js",
     "runtime-main.js.map": "/zakat/static/js/runtime-main.4b935a40.js.map",
     "static/css/2.1ac91e6e.chunk.css": "/zakat/static/css/2.1ac91e6e.chunk.css",
-    "static/js/2.ca7e5c8d.chunk.js": "/zakat/static/js/2.ca7e5c8d.chunk.js",
-    "static/js/2.ca7e5c8d.chunk.js.map": "/zakat/static/js/2.ca7e5c8d.chunk.js.map",
+    "static/js/2.1e966c07.chunk.js": "/zakat/static/js/2.1e966c07.chunk.js",
+    "static/js/2.1e966c07.chunk.js.map": "/zakat/static/js/2.1e966c07.chunk.js.map",
     "index.html": "/zakat/index.html",
-    "precache-manifest.bbb1c6cf8d7f278330ec27825def77aa.js": "/zakat/precache-manifest.bbb1c6cf8d7f278330ec27825def77aa.js",
+    "precache-manifest.1e258f9fa42c835ea45e628c4edc223b.js": "/zakat/precache-manifest.1e258f9fa42c835ea45e628c4edc223b.js",
     "service-worker.js": "/zakat/service-worker.js",
     "static/css/2.1ac91e6e.chunk.css.map": "/zakat/static/css/2.1ac91e6e.chunk.css.map",
     "static/css/main.5ecd60fb.chunk.css.map": "/zakat/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.ca7e5c8d.chunk.js.LICENSE.txt": "/zakat/static/js/2.ca7e5c8d.chunk.js.LICENSE.txt"
+    "static/js/2.1e966c07.chunk.js.LICENSE.txt": "/zakat/static/js/2.1e966c07.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4b935a40.js",
     "static/css/2.1ac91e6e.chunk.css",
-    "static/js/2.ca7e5c8d.chunk.js",
+    "static/js/2.1e966c07.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.c8aad1d3.chunk.js"
+    "static/js/main.e167318b.chunk.js"
   ]
 }
