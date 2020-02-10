@@ -13,6 +13,9 @@ const App = () => {
   return (
     <Layout>
       <Switch>
+      <Route exact path="/">
+          <Dashboard />
+        </Route>
         <Route path={`/${PAGE_DASHBOARD}`}>
           <Dashboard />
         </Route>
