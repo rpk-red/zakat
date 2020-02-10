@@ -38,7 +38,7 @@ const FooterBar = () => {
         if (pathname.includes(PAGE_USER_PROFILE)) setValue(3)
     }, [pathname]);
 
-    const showFooter = pathname.includes("/") || pathname.includes(PAGE_HOME) || pathname.includes(PAGE_DASHBOARD) || pathname.includes(PAGE_HISTORY) || pathname.includes(PAGE_USER_PROFILE)
+    const showFooter = pathname.includes("/zakat") || pathname.includes(PAGE_HOME) || pathname.includes(PAGE_DASHBOARD) || pathname.includes(PAGE_HISTORY) || pathname.includes(PAGE_USER_PROFILE)
 
     return (
         <>
@@ -52,10 +52,10 @@ const FooterBar = () => {
                             textColor="primary"
                             aria-label="icon tabs example"
                         >
-                            <Tab component={Link} icon={<Home />} to="/home" aria-label="home" />
-                            <Tab component={Link} icon={<CreditCard />} to="/" aria-label="dashboard" />
-                            <Tab component={Link} icon={<History />} to="/history" aria-label="history" />
-                            <Tab component={Link} icon={<Person />} to="/profile" aria-label="profile" />
+                            <Tab component={Link} icon={<Home />} to="/zakat/home" aria-label="home" />
+                            <Tab component={Link} icon={<CreditCard />} to="/zakat" aria-label="dashboard" />
+                            <Tab component={Link} icon={<History />} to="/zakat/history" aria-label="history" />
+                            <Tab component={Link} icon={<Person />} to="/zakat/profile" aria-label="profile" />
                         </Tabs>
                     </Grid>
                 </Toolbar>

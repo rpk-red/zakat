@@ -13,16 +13,16 @@ const App = () => {
   return (
     <Layout>
       <Switch>
-      <Route exact path="/">
+      <Route exact path="/zakat">
           <Dashboard />
         </Route>
-        <Route path={`/${PAGE_DASHBOARD}`}>
+        <Route path={`/zakat/${PAGE_DASHBOARD}`}>
           <Dashboard />
         </Route>
-        <Route path={`/${PAGE_CARD}`}>
+        <Route path={`/zakat/${PAGE_CARD}`}>
           <CardCreate />
         </Route>
-        <Route path={`/${PAGE_USER_PROFILE}`}>
+        <Route path={`/zakat/${PAGE_USER_PROFILE}`}>
           <Profile />
         </Route>
       </Switch>

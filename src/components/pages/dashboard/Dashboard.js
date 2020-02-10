@@ -58,7 +58,7 @@ const Dashboard = () => {
                 <Paper className={classes.paper}>
                     <Grid container direction="column" alignItems="center" spacing={2}>
                         <Grid item>
-                            <Button variant="outlined" startIcon={<Add />} className={classes.button} component={Link} to="card">
+                            <Button variant="outlined" startIcon={<Add />} className={classes.button} component={Link} to="/zakat/card">
                                 Add new card
                         </Button>
                         </Grid>

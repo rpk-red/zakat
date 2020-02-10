@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import clsx from "clsx";
 
-import { makeStyles, Grid, Paper, IconButton, Typography } from '@material-ui/core';
+import { makeStyles, Grid, Paper, Typography } from '@material-ui/core';
 
 import { CARD_MASTERCARD, CARD_REVOLUT, CARD_VISA } from '../../../assets/constants/appConstants';
 import CardLogo from '../../../assets/jss/LogoIcons';
