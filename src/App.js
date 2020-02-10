@@ -3,13 +3,16 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Layout from './components/pages/shared/Layout';
+import Dashboard from './components/pages/dashboard/Dashboard';
+import { PAGE_DASHBOARD } from './assets/constants/appConstants';
+
 
 const App = () => {
   return (
     <Layout>
       <Switch>
-        <Route path="/past">
-          <div />
+        <Route path={`/${PAGE_DASHBOARD}`}>
+          <Dashboard />
         </Route>
         <Route path="/present">
           <div />
@@ -18,7 +21,7 @@ const App = () => {
           <div />
         </Route>
       </Switch>
-    </Layout>
+    </Layout >
   );
 }
 
