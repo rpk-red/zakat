@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { HashRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router } from "react-router-dom"
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -49,7 +49,7 @@ const theme = createMuiTheme({
 });
 const Root = () => (
     <ThemeProvider theme={theme}>
-        <Router basename='/'>
+        <Router>
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <App />
             </MuiPickersUtilsProvider>
