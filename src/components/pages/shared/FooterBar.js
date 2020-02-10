@@ -14,7 +14,7 @@ import History from "@material-ui/icons/History";
 import Person from "@material-ui/icons/Person";
 import Home from "@material-ui/icons/Home";
 import CreditCard from "@material-ui/icons/CreditCard";
-import { PAGE_DASHBOARD, PAGE_HOME, PAGE_USER, PAGE_HISTORY } from '../../../assets/constants/appConstants';
+import { PAGE_DASHBOARD, PAGE_HOME, PAGE_USER_PROFILE, PAGE_HISTORY } from '../../../assets/constants/appConstants';
 
 
 const useStyles = makeStyles(theme => ({
@@ -35,10 +35,10 @@ const FooterBar = () => {
         if (pathname.includes(PAGE_HOME)) setValue(0)
         if (pathname.includes(PAGE_DASHBOARD)) setValue(1)
         if (pathname.includes(PAGE_HISTORY)) setValue(2)
-        if (pathname.includes(PAGE_USER)) setValue(3)
+        if (pathname.includes(PAGE_USER_PROFILE)) setValue(3)
     }, [pathname]);
 
-    const showFooter = pathname.includes(PAGE_HOME) || pathname.includes(PAGE_DASHBOARD) || pathname.includes(PAGE_HISTORY) || pathname.includes(PAGE_USER)
+    const showFooter = pathname.includes(PAGE_HOME) || pathname.includes(PAGE_DASHBOARD) || pathname.includes(PAGE_HISTORY) || pathname.includes(PAGE_USER_PROFILE)
 
     return (
         <>
@@ -55,7 +55,7 @@ const FooterBar = () => {
                             <Tab component={Link} icon={<Home />} to="/home" aria-label="home" />
                             <Tab component={Link} icon={<CreditCard />} to="/dashboard" aria-label="dashboard" />
                             <Tab component={Link} icon={<History />} to="/history" aria-label="history" />
-                            <Tab component={Link} icon={<Person />} to="/user" aria-label="user" />
+                            <Tab component={Link} icon={<Person />} to="/profile" aria-label="profile" />
                         </Tabs>
                     </Grid>
                 </Toolbar>

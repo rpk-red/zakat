@@ -5,16 +5,18 @@ import clsx from "clsx";
 
 import { makeStyles, Grid, Paper, IconButton, Typography } from '@material-ui/core';
 
-import { CARD_MASTERCARD, CARD_VISA, CARD_REVOLUT } from '../../../../assets/constants/appConstants';
+import { CARD_MASTERCARD, CARD_REVOLUT, CARD_VISA } from '../../../assets/constants/appConstants';
+import CardLogo from '../../../assets/jss/LogoIcons';
 
-import DeleteForever from "@material-ui/icons/DeleteForever";
+import cardChipImg from "../../../assets/images/card/cardChip.png"
 
-import CardLogo from "../../../../assets/jss/LogoIcons";
+
+const CardChip = ({ className }) => <img src={cardChipImg} alt="cardChipIcon" className={className} />
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        width: 400,
-        height: 100,
+        width: 500,
+        height: 200,
         borderRadius: 12,
         backgroundColor: props => props.type === CARD_MASTERCARD ? "#051C3F" : props.type === CARD_REVOLUT ? "#349BFB" : "#0044AB"
     },
@@ -35,18 +37,21 @@ const useStyles = makeStyles(theme => ({
     },
     gridItem: {
         textAlign: "center"
+    },
+    itemLastChild: {
+        width: "calc(100% - 20px)"
     }
 }));
 
 
-const DashboardCardPanel = (props) => {
-    const { id, type, cardNumber = 0, onDelete } = props;
+const CardPanel = (props) => {
+    const { id, type = "mastercard", cardNumber = "7364 1835 5532 2233", exparationDate = "01/20" } = props;
     const classes = useStyles(props);
     return (
         <Paper className={classes.paper} id={`dashboard-card-panel-paper-${id}`}>
-            <Grid container justify="space-between" alignItems="center" className={classes.container}>
+            <Grid container direction="column" justify="space-evenly" alignItems="flex-start" spacing={5}>
                 <Grid item>
-                    <Grid container justify="flex-start" alignItems="center" spacing={1}>
+                    <Grid container spacing={2}>
                         <Grid item className={classes.gridItem}>
                             <CardLogo type={type} className={classes.paddingLeft} />
                         </Grid>
@@ -55,25 +60,32 @@ const DashboardCardPanel = (props) => {
                                 Mastercard
                             </Typography>
                         </Grid>}
-                        <Grid item xs={12}>
-                            <Typography className={clsx(classes.colorWhite, classes.typography, classes.paddingLeft)}>
-                                *** {cardNumber.toString().slice(0, cardNumber.toString().length - 2)}
-                            </Typography>
-                        </Grid>
                     </Grid>
                 </Grid>
                 <Grid item>
-                    <IconButton onClick={() => onDelete(id)} >
-                        <DeleteForever className={classes.colorWhite} />
-                    </IconButton>
+                    <CardChip className={classes.paddingLeft} />
+                </Grid>
+                <Grid item className={classes.itemLastChild}>
+                    <Grid container justify="space-between">
+                        <Grid item>
+                            <Typography className={clsx(classes.colorWhite, classes.typography, classes.paddingLeft)}>
+                                {cardNumber}
+                            </Typography>
+                        </Grid>
+                        <Grid item >
+                            <Typography align="left" className={clsx(classes.colorWhite, classes.typography, classes.paddingLeft)}>
+                                {exparationDate}
+                            </Typography>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </Paper >
     )
 }
 
-DashboardCardPanel.propTypes = {
+CardPanel.propTypes = {
     type: PropTypes.oneOf([CARD_MASTERCARD, CARD_REVOLUT, CARD_VISA])
 }
 
-export default DashboardCardPanel
+export default CardPanel

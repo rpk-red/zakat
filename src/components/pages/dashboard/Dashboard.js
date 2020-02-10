@@ -4,15 +4,13 @@ import PropTypes from "prop-types";
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Link } from "react-router-dom"
 
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import { makeStyles } from '@material-ui/core/styles';
+import { Paper, Typography, Slide, Grid, Button } from "@material-ui/core";
 
 
 import Add from "@material-ui/icons/Add";
 
 import DashboardCardPanel from "./extensions/DashboardCardPanel";
-import { Paper, Typography, Slide } from "@material-ui/core";
 
 
 
@@ -32,8 +30,7 @@ const useStyles = makeStyles({
     button: {
         width: 400,
         color: "#A8C3EC",
-        borderRadius: 8,
-        textTransform: "none"
+        borderRadius: 8
     }
 });
 
@@ -48,6 +45,10 @@ const mockCards = [
 const Dashboard = () => {
     const [rows, setRows] = useState(mockCards)
     const classes = useStyles();
+
+    const handleDelete = id => {
+        setRows(rows.filter(r => r.id !== id))
+    }
     return (
         <Grid container direction="column" justify="flex-end" alignItems="center" className={classes.root}>
             <Typography variant="h5" className={classes.caption}>
@@ -72,7 +73,7 @@ const Dashboard = () => {
                                 <Grid container direction="column" alignItems="center" spacing={2}>
                                     {rows.map(card =>
                                         <Grid item key={card.id}>
-                                            <DashboardCardPanel {...card} />
+                                            <DashboardCardPanel {...card} onDelete={handleDelete} />
                                         </Grid>
                                     )}
                                 </Grid>
