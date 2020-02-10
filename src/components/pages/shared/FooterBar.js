@@ -35,11 +35,17 @@ const FooterBar = () => {
         console.log("pathname", pathname);
         if (pathname.includes(PAGE_HOME)) setValue(0)
         if (pathname === `/${BASE}`) setValue(1)
+        if (pathname === `/${BASE}/`) setValue(1)
         if (pathname.includes(PAGE_HISTORY)) setValue(2)
         if (pathname.includes(PAGE_USER_PROFILE)) setValue(3)
     }, [pathname]);
 
-    const showFooter = pathname === `/${BASE}` || pathname.includes(PAGE_HOME) || pathname.includes(PAGE_DASHBOARD) || pathname.includes(PAGE_HISTORY) || pathname.includes(PAGE_USER_PROFILE)
+    const showFooter = pathname === `/${BASE}/` ||
+        pathname === `/${BASE}` ||
+        pathname.includes(PAGE_HOME) ||
+        pathname.includes(PAGE_DASHBOARD) ||
+        pathname.includes(PAGE_HISTORY) ||
+        pathname.includes(PAGE_USER_PROFILE)
 
     return (
         <>
