@@ -33,7 +33,7 @@ const FooterBar = () => {
 
     useEffect(() => {
         if (pathname.includes(PAGE_HOME)) setValue(0)
-        if (pathname.includes(PAGE_DASHBOARD)) setValue(1)
+        if (pathname.includes("/zakat")) setValue(1)
         if (pathname.includes(PAGE_HISTORY)) setValue(2)
         if (pathname.includes(PAGE_USER_PROFILE)) setValue(3)
     }, [pathname]);
