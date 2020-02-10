@@ -1,5 +1,6 @@
 export const EMPTY_TABLE = "no items to display";
 
+export const BASE = "zakat"
 export const PAGE_DASHBOARD = "dashboard";
 export const PAGE_HOME = "home";
 export const PAGE_USER_PROFILE = "profile";

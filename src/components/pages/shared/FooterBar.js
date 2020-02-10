@@ -14,7 +14,7 @@ import History from "@material-ui/icons/History";
 import Person from "@material-ui/icons/Person";
 import Home from "@material-ui/icons/Home";
 import CreditCard from "@material-ui/icons/CreditCard";
-import { PAGE_DASHBOARD, PAGE_HOME, PAGE_USER_PROFILE, PAGE_HISTORY } from '../../../assets/constants/appConstants';
+import { PAGE_DASHBOARD, PAGE_HOME, PAGE_USER_PROFILE, PAGE_HISTORY, BASE } from '../../../assets/constants/appConstants';
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,13 +32,14 @@ const FooterBar = () => {
     const [value, setValue] = React.useState(0);
 
     useEffect(() => {
+        console.log("pathname", pathname);
         if (pathname.includes(PAGE_HOME)) setValue(0)
-        if (pathname.includes("/zakat")) setValue(1)
+        if (pathname === `/${BASE}`) setValue(1)
         if (pathname.includes(PAGE_HISTORY)) setValue(2)
         if (pathname.includes(PAGE_USER_PROFILE)) setValue(3)
     }, [pathname]);
 
-    const showFooter = pathname.includes("/zakat") || pathname.includes(PAGE_HOME) || pathname.includes(PAGE_DASHBOARD) || pathname.includes(PAGE_HISTORY) || pathname.includes(PAGE_USER_PROFILE)
+    const showFooter = pathname === `/${BASE}` || pathname.includes(PAGE_HOME) || pathname.includes(PAGE_DASHBOARD) || pathname.includes(PAGE_HISTORY) || pathname.includes(PAGE_USER_PROFILE)
 
     return (
         <>
