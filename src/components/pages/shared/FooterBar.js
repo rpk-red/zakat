@@ -14,7 +14,7 @@ import History from "@material-ui/icons/History";
 import Person from "@material-ui/icons/Person";
 import Home from "@material-ui/icons/Home";
 import CreditCard from "@material-ui/icons/CreditCard";
-import { PAGE_DASHBOARD, PAGE_HOME, PAGE_USER_PROFILE, PAGE_HISTORY, BASE } from '../../../assets/constants/appConstants';
+import { PAGE_DASHBOARD, PAGE_HOME, PAGE_USER_PROFILE, PAGE_TRANSACTIONS_HISTORY, BASE, PAGE_CREATE_CARD } from '../../../assets/constants/appConstants';
 
 
 const useStyles = makeStyles(theme => ({
@@ -34,9 +34,10 @@ const FooterBar = () => {
     useEffect(() => {
         console.log("pathname", pathname);
         if (pathname.includes(PAGE_HOME)) setValue(0)
-        if (pathname === `/${BASE}`) setValue(1)
-        if (pathname === `/${BASE}/`) setValue(1)
-        if (pathname.includes(PAGE_HISTORY)) setValue(2)
+        if (pathname === `/${BASE}`) setValue(0)
+        if (pathname === `/${BASE}/`) setValue(0)
+        if (pathname.includes(PAGE_CREATE_CARD)) setValue(1)
+        if (pathname.includes(PAGE_TRANSACTIONS_HISTORY)) setValue(2)
         if (pathname.includes(PAGE_USER_PROFILE)) setValue(3)
     }, [pathname]);
 
@@ -44,8 +45,9 @@ const FooterBar = () => {
         pathname === `/${BASE}` ||
         pathname.includes(PAGE_HOME) ||
         pathname.includes(PAGE_DASHBOARD) ||
-        pathname.includes(PAGE_HISTORY) ||
-        pathname.includes(PAGE_USER_PROFILE)
+        pathname.includes(PAGE_TRANSACTIONS_HISTORY) ||
+        pathname.includes(PAGE_USER_PROFILE) ||
+        pathname.includes(PAGE_CREATE_CARD)
 
     return (
         <>
@@ -59,10 +61,10 @@ const FooterBar = () => {
                             textColor="primary"
                             aria-label="icon tabs example"
                         >
-                            <Tab component={Link} icon={<Home />} to="/zakat/home" aria-label="home" />
-                            <Tab component={Link} icon={<CreditCard />} to="/zakat" aria-label="dashboard" />
-                            <Tab component={Link} icon={<History />} to="/zakat/history" aria-label="history" />
-                            <Tab component={Link} icon={<Person />} to="/zakat/profile" aria-label="profile" />
+                            <Tab component={Link} icon={<Home />} to={`/${BASE}`} aria-label="home" />
+                            <Tab component={Link} icon={<CreditCard />} to={`/${BASE}/${PAGE_CREATE_CARD}`} aria-label="dashboard" />
+                            <Tab component={Link} icon={<History />} to={`/${BASE}/${PAGE_TRANSACTIONS_HISTORY}`} aria-label="history" />
+                            <Tab component={Link} icon={<Person />} to={`/${BASE}/${PAGE_USER_PROFILE}`} aria-label="profile" />
                         </Tabs>
                     </Grid>
                 </Toolbar>

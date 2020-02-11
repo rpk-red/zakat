@@ -17,8 +17,7 @@ import DashboardCardPanel from "./extensions/DashboardCardPanel";
 const useStyles = makeStyles({
     paper: {
         boxSizing: "border-box",
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
+        borderRadius: 30,
         padding: 30,
     },
     caption: {
@@ -72,8 +71,8 @@ const Dashboard = () => {
                         <Grid item>
                             <Scrollbars
                                 autoHeight
-                                autoHeightMin={200}
-                                autoHeightMax={600}
+                                autoHeightMin={"20vh"}
+                                autoHeightMax={"75vh"}
                                 renderTrackHorizontal={props => <div {...props} style={{ display: 'none' }} className="track-horizontal" />}
                                 renderView={props => (
                                     <div {...props} style={{ ...props.style, overflowX: 'hidden' }} />
