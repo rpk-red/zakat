@@ -15,7 +15,7 @@ const App = () => {
   return (
     <Layout>
       <Switch>
-        <Route exact path={`/${BASE}/${PAGE_CARD}`}>
+        <Route path={`/${BASE}/${PAGE_CARD}`}>
           <Dashboard />
         </Route>
         <Route path={`/${BASE}/${PAGE_DASHBOARD}`}>
