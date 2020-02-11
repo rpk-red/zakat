@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5958e348d138a1f232688e4a963bd47c",
+    "revision": "2d6d2e8d3fc65cc94cc482e6eeb24678",
     "url": "/zakat/index.html"
   },
   {
-    "revision": "788efc4220c045dd2136",
+    "revision": "11008a3cde4fa504f652",
     "url": "/zakat/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "b7f3f9b1cd964ef7a1e1",
-    "url": "/zakat/static/js/2.9780e31b.chunk.js"
+    "revision": "391a528e4fb6efd44164",
+    "url": "/zakat/static/js/2.aa38c6b6.chunk.js"
   },
   {
-    "revision": "3adc01bea76e7956dc3633ee898f6936",
-    "url": "/zakat/static/js/2.9780e31b.chunk.js.LICENSE.txt"
+    "revision": "6f5f1c4a5f7f6e382b8aeca1b4ac8d96",
+    "url": "/zakat/static/js/2.aa38c6b6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "788efc4220c045dd2136",
-    "url": "/zakat/static/js/main.3d06c575.chunk.js"
+    "revision": "11008a3cde4fa504f652",
+    "url": "/zakat/static/js/main.27fb1869.chunk.js"
   },
   {
     "revision": "2a1922b702431e7e229e",
