@@ -55,13 +55,13 @@ const TransactionHistory = props => {
     const handleDelete = () => { }
     return (
         <div>
-            <Slide direction="right" in mountOnEnter unmountOnExit>
+            {/* <Slide direction="right" in mountOnEnter unmountOnExit>
                 <Paper className={classes.paper}>
                     <Grid container direction="column" alignItems="center" spacing={2}>
                         <Grid item>
-                            {/* <Button variant="outlined" startIcon={<Add />} className={classes.button} component={Link} to={`/${BASE}/${PAGE_CREATE_CARD}`}>
+                            <Button variant="outlined" startIcon={<Add />} className={classes.button} component={Link} to={`/${BASE}/${PAGE_CREATE_CARD}`}>
                                 Add new card
-                        </Button> */}
+                        </Button>
                         </Grid>
                         <Grid item>
                             <Scrollbars
@@ -84,7 +84,7 @@ const TransactionHistory = props => {
                         </Grid>
                     </Grid>
                 </Paper>
-            </Slide>
+            </Slide> */}
         </div>
     )
 }

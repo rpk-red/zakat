@@ -8,7 +8,7 @@ import { TextField, Button, Grid, makeStyles } from '@material-ui/core'
 import { DatePicker } from '@material-ui/pickers';
 
 import scanImg from "../../../../assets/images/card/scanIcon.png"
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 
 const ScanIcon = props => <img src={scanImg} alt="scanIcon" />
@@ -66,23 +66,42 @@ const useStyles = makeStyles({
 const CardForm = ({ onCreate }) => {
     const classes = useStyles();
     const { type } = useParams();
+    const history = useHistory();
 
     const [cardNumber, setCardNumber] = useState("");
     const [cardHolderName, setCardHolderName] = useState("");
     const [exparationDate, setExparationDate] = useState(null);
     const [cvv, setCvv] = useState("");
-    const [errors, setErrors] = useState(null);
+    const [errors, setErrors] = useState([]);
 
     const handleSubmit = () => {
         // TO DO validiraj
-        if (errors === null) onCreate({ cardNumber, cardHolderName, exparationDate, cvv, type })
+        let _errors = [];
+        if (!Boolean(cardNumber)) _errors.push("cardNumber")
+        if (!Boolean(cardHolderName)) _errors.push("cardHolderName")
+        if (!Boolean(exparationDate)) _errors.push("exparationDate")
+        if (!Boolean(cvv)) _errors.push("cvv")
+
+        setErrors(_errors);
+
+        if (_errors.length > 0) return;
+
+        onCreate({ cardNumber, cardHolderName, exparationDate, cvv, type })
+        history.goBack();
+
+
     };
 
     const handleChange = e => {
         const { id, value } = e.target;
-        if (id === "cardNumber") setCardNumber(parseInt(value))
+
+        if (id === "cardNumber") setCardNumber(isNaN(parseInt(value)) ? "" : value)
         if (id === "cardHolderName") setCardHolderName(value)
-        if (id === "cvv") setCvv(parseInt(value))
+        if (id === "cvv") setCvv(isNaN(parseInt(value)) ? "" : value)
+
+        if (value !== null && value !== undefined && value !== "") {
+            setErrors(errors.filter(el => el !== id));
+        }
     };
 
     return (
@@ -91,6 +110,8 @@ const CardForm = ({ onCreate }) => {
                 <TextField
                     InputProps={{ className: classes.input, disableUnderline: true }}
                     required
+                    error={Boolean(errors?.indexOf("cardHolderName") > -1)}
+                    helperText={errors?.indexOf("cardHolderName") > -1 && "this field is mandatory"}
                     id="cardHolderName"
                     label="Card holder name"
                     variant="filled"
@@ -101,7 +122,10 @@ const CardForm = ({ onCreate }) => {
             <Grid item xs={12}>
                 <TextField
                     InputProps={{ className: classes.input, disableUnderline: true }}
-                    required id="cardNumber"
+                    required
+                    error={Boolean(errors?.indexOf("cardNumber") > -1)}
+                    helperText={errors?.indexOf("cardNumber") > -1 && "this field is mandatory"}
+                    id="cardNumber"
                     label="Card number"
                     variant="filled"
                     value={cardNumber}
@@ -115,7 +139,10 @@ const CardForm = ({ onCreate }) => {
                     inputProps={{ className: classes.dateInputRoot }}
                     margin="none"
                     className={classes.date}
-                    required id="expirationDate"
+                    required
+                    error={exparationDate === null && errors?.indexOf("exparationDate") > -1}
+                    helperText={exparationDate === null && errors?.indexOf("exparationDate") > -1 && "this field is mandatory"}
+                    id="expirationDate"
                     label="Expiration date"
                     variant="filled"
                     fullWidth
@@ -128,6 +155,8 @@ const CardForm = ({ onCreate }) => {
                 <TextField
                     InputProps={{ className: classes.input, disableUnderline: true }}
                     required
+                    error={Boolean(errors?.indexOf("cvv") > -1)}
+                    helperText={errors?.indexOf("cvv") > -1 && "this field is mandatory"}
                     id="cvv"
                     label="CVV"
                     variant="filled"

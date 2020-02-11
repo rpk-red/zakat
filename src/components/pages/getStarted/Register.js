@@ -64,29 +64,43 @@ const Register = ({ onCreate }) => {
     const [errors, setErrors] = useState(null);
 
     const handleSubmit = () => {
-        // TO DO validiraj
-        // if (errors === null) onCreate({ userName, email, phoneNumber, errors })
-        if (errors === null) {
-            const registerdUsers = JSON.parse(localStorage.getItem("registerdUsers")) || [];
-            const id = getRandomId();
-            console.log("registerdUsers")
-            // const users = [
-            //     ...registerdUsers, { userName, email, phoneNumber, id }
-            // ]
-            const users =
-                registerdUsers.concat([{ userName, email, phoneNumber, id }])
+        const _errors = []
+
+        if (!Boolean(userName)) _errors.push("userName")
+        if (!Boolean(email)) _errors.push("email")
+        if (!Boolean(phoneNumber)) _errors.push("phoneNumber")
+
+        setErrors(_errors);
+
+        if (_errors.length > 0) return;
+
+        const registerdUsers = JSON.parse(localStorage.getItem("registerdUsers")) || [];
+        const id = getRandomId();
+        const users =
+            registerdUsers.concat([{ userName, email, phoneNumber, id }])
 
 
-            localStorage.setItem("registerdUsers", JSON.stringify(users))
-            history.push(`/${PAGE_LOGIN}`);
-        }
+        localStorage.setItem("registerdUsers", JSON.stringify(users))
+        history.push(`/${PAGE_LOGIN}`);
     };
 
     const handleChange = e => {
         const { id, value } = e.target;
         if (id === "userName") setUserName(value)
         if (id === "email") setEmail(value)
+
+        if (value !== null && value !== undefined && value !== "") {
+            setErrors(errors.filter(el => el !== id));
+        }
     };
+
+    const handleChangePhoneNumber = phone => {
+        setPhoneNumber(phone)
+
+        if (phone !== null && phone !== undefined && phone !== "") {
+            setErrors(errors.filter(el => el !== "phoneNumber"));
+        }
+    }
 
 
     return (
@@ -109,21 +123,43 @@ const Register = ({ onCreate }) => {
             <Grid item>
                 <Grid container direction="column" spacing={3} justify="space-around" alignItems="stretch">
                     <Grid item>
-                        <TextField required onChange={handleChange} value={userName} InputProps={{ className: classes.input }} id="userName" label="User name" variant="filled" fullWidth />
+                        <TextField
+                            required
+                            error={errors?.indexOf("userName") > -1}
+                            helperText={errors?.indexOf("userName") > -1 && "this field is mandatory"}
+                            onChange={handleChange}
+                            value={userName}
+                            InputProps={{ className: classes.input }}
+                            id="userName"
+                            label="User name"
+                            variant="filled"
+                            fullWidth />
                     </Grid>
                     <Grid item>
-                        <TextField required onChange={handleChange} value={email} InputProps={{ className: classes.input }} id="email" label="E-mail" variant="filled" fullWidth />
+                        <TextField
+                            required
+                            error={errors?.indexOf("email") > -1}
+                            helperText={errors?.indexOf("email") > -1 && "this field is mandatory"}
+                            onChange={handleChange}
+                            value={email}
+                            InputProps={{ className: classes.input }}
+                            id="email"
+                            label="E-mail"
+                            variant="filled"
+                            fullWidth />
                     </Grid>
                     <Grid item>
                         <MuiPhoneNumber
                             defaultCountry='us'
                             InputProps={{ className: classes.input }}
+                            error={errors?.indexOf("phoneNumber") > -1}
+                            helperText={errors?.indexOf("phoneNumber") > -1 && "this field is mandatory"}
                             id="phoneNumber"
                             label="Phone number"
                             variant="filled"
                             fullWidth
                             value={phoneNumber}
-                            onChange={phone => setPhoneNumber(phone)}
+                            onChange={phone => handleChangePhoneNumber(phone)}
                             required
                         />
                     </Grid>
