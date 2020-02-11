@@ -37,8 +37,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const DashboardCardPanel = (props) => {
+const DashboardCardPanel = props => {
     const { id, type, cardNumber = 0, onDelete } = props;
+    console.log("cardNumber", cardNumber)
     const classes = useStyles(props);
     return (
         <Paper className={classes.paper} id={`dashboard-card-panel-paper-${id}`}>
@@ -55,7 +56,7 @@ const DashboardCardPanel = (props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography className={clsx(classes.colorWhite, classes.typography)}>
-                                *** {cardNumber.toString().slice(0, cardNumber.toString().length - 2)}
+                               ***{cardNumber.toString().replace(/.(?=.{4})/g, '')}
                             </Typography>
                         </Grid>
                     </Grid>

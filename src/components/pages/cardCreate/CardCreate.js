@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Typography, Slide, Grid, IconButton } from "@material-ui/core";
@@ -38,12 +38,9 @@ const useStyles = makeStyles({
 });
 
 
-const CardCreate = props => {
-    const [cardNumber, setCardNumber] = useState(null)
-    const [cardHolderName, setCardHolderName] = useState(null)
-    const [exparationDate, setExparationDate] = useState(null)
-    const [cvv, setCvv] = useState(null)
+const CardCreate = ({ onCreate }) => {
     const history = useHistory();
+    const { type } = useParams()
 
     const handleBack = () => history.goBack();
 
@@ -72,7 +69,7 @@ const CardCreate = props => {
                     <Grid item>
                         <Slide direction="right" in mountOnEnter unmountOnExit>
                             <div>
-                                <CardPanel />
+                                <CardPanel type={type} />
                             </div>
                         </Slide>
                     </Grid>
@@ -80,7 +77,7 @@ const CardCreate = props => {
                     <Grid item>
                         <Slide direction="right" in mountOnEnter unmountOnExit>
                             <Paper className={classes.paper}>
-                                <CardForm />
+                                <CardForm onCreate={onCreate} />
                             </Paper>
                         </Slide>
                     </Grid>

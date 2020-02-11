@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BrowserRouter as Router } from "react-router-dom"
+import { HashRouter as Router } from "react-router-dom"
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -8,6 +8,7 @@ import MomentUtils from '@date-io/moment';
 
 
 import App from "./App";
+import { BASE } from './assets/constants/appConstants';
 
 const theme = createMuiTheme({
     typography: {
@@ -31,6 +32,17 @@ const theme = createMuiTheme({
                 borderBottomLeftRadius: 8,
                 borderBottomRightRadius: 8
             },
+            disabled: {
+                backgroundColor: "#F4F9FE",
+                borderBottom: "none",
+                borderRadius: 8
+            },
+            input: {
+                "&:disabled": {
+                    backgroundColor: "#F4F9FE",
+                    borderRadius: 8
+                }
+            },
             underline: {
                 borderBottom: "none",
                 "&:before": {
@@ -42,6 +54,13 @@ const theme = createMuiTheme({
                 "&:hover:before": {
                     borderBottom: "none"
                 },
+                "&$disabled:before": {
+                    borderBottom: "none",
+                    borderBottomStyle: "none"
+                },
+            },
+            "root.Mui-disabled:before": {
+                backgroundColor: "#F4F9FE"
             }
         }
     }
@@ -49,7 +68,7 @@ const theme = createMuiTheme({
 });
 const Root = () => (
     <ThemeProvider theme={theme}>
-        <Router>
+        <Router basename={`/${BASE}`}>
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <App />
             </MuiPickersUtilsProvider>

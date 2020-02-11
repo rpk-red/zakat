@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const CardPanel = props => {
-    const { id, type = "mastercard", cardNumber = "7364 1835 5532 2233", exparationDate = "01/20" } = props;
+    const { id, type = "", cardNumber = "7364 1835 5532 2233", exparationDate = "01/20" } = props;
     const classes = useStyles(props);
     return (
         <Paper className={classes.paper} id={`dashboard-card-panel-paper-${id}`}>

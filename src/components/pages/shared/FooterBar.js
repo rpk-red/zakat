@@ -32,7 +32,6 @@ const FooterBar = () => {
     const [value, setValue] = React.useState(0);
 
     useEffect(() => {
-        console.log("pathname", pathname);
         if (pathname.includes(PAGE_HOME)) setValue(0)
         if (pathname === `/${BASE}`) setValue(0)
         if (pathname === `/${BASE}/`) setValue(0)
@@ -61,10 +60,10 @@ const FooterBar = () => {
                             textColor="primary"
                             aria-label="icon tabs example"
                         >
-                            <Tab component={Link} icon={<Home />} to={`/${BASE}`} aria-label="home" />
-                            <Tab component={Link} icon={<CreditCard />} to={`/${BASE}/${PAGE_CARD}`} aria-label="dashboard" />
-                            <Tab component={Link} icon={<History />} to={`/${BASE}/${PAGE_TRANSACTIONS_HISTORY}`} aria-label="history" />
-                            <Tab component={Link} icon={<Person />} to={`/${BASE}/${PAGE_USER_PROFILE}`} aria-label="profile" />
+                            <Tab component={Link} icon={<Home />} to={`/${PAGE_HOME}`} aria-label="home" />
+                            <Tab component={Link} icon={<CreditCard />} to={`/${PAGE_CARD}`} aria-label="dashboard" />
+                            <Tab component={Link} icon={<History />} to={`/${PAGE_TRANSACTIONS_HISTORY}`} aria-label="history" />
+                            <Tab component={Link} icon={<Person />} to={`/${PAGE_USER_PROFILE}`} aria-label="profile" />
                         </Tabs>
                     </Grid>
                 </Toolbar>

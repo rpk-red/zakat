@@ -69,6 +69,14 @@ const useStyles = makeStyles({
 
 const ProfileForm = props => {
     const classes = useStyles()
+    const user = {
+        userName: "Test User",
+        email: "testUser@test.com",
+        phoneNumber: "1323123211"
+    }
+    const handleChange = e => {
+
+    }
     return (
         <Grid container direction="column" spacing={3} justify="space-around" alignItems="stretch">
             <Grid item>
@@ -77,10 +85,10 @@ const ProfileForm = props => {
                 </Typography>
             </Grid>
             <Grid item>
-                <TextField InputProps={{ className: classes.input }} id="userName" label="User name" variant="filled" fullWidth />
+                <TextField value={user.userName} disabled InputProps={{ className: classes.input }} id="userName" label="User name" variant="filled" fullWidth />
             </Grid>
             <Grid item>
-                <TextField InputProps={{ className: classes.input }} id="email" label="E-mail" variant="filled" fullWidth />
+                <TextField value={user.email} disabled InputProps={{ className: classes.input }} id="email" label="E-mail" variant="filled" fullWidth />
             </Grid>
             <Grid item>
                 <MuiPhoneNumber
@@ -89,8 +97,11 @@ const ProfileForm = props => {
                     id="phoneNumber"
                     label="Phone number"
                     variant="filled"
-                    // dropdownClass={classes.dropdown}
+                    disableDropdown
                     fullWidth
+                    disabled
+                    value={user.phoneNumber}
+                    handleChange={handleChange}
                 />
             </Grid>
             <Grid item>

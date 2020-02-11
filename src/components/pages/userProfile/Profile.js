@@ -12,7 +12,10 @@ import ProfileForm from "./ProfileForm";
 const useStyles = makeStyles({
     paper: {
         borderRadius: 30,
-        padding: 60,
+        paddingTop: 30,
+        paddingBottom: 30,
+        paddingRight: 80,
+        paddingLeft: 80,
         marginTop: -85
     },
     caption: {

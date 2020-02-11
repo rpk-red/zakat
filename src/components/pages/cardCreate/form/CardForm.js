@@ -8,6 +8,7 @@ import { TextField, Button, Grid, makeStyles } from '@material-ui/core'
 import { DatePicker } from '@material-ui/pickers';
 
 import scanImg from "../../../../assets/images/card/scanIcon.png"
+import { useParams } from 'react-router-dom';
 
 
 const ScanIcon = props => <img src={scanImg} alt="scanIcon" />
@@ -62,21 +63,54 @@ const useStyles = makeStyles({
     },
 });
 
-const CardForm = props => {
-    const classes = useStyles()
-    const [selectedDate, handleDateChange] = useState(null); // TODO: do this in root
+const CardForm = ({ onCreate }) => {
+    const classes = useStyles();
+    const { type } = useParams();
+
+    const [cardNumber, setCardNumber] = useState("");
+    const [cardHolderName, setCardHolderName] = useState("");
+    const [exparationDate, setExparationDate] = useState(null);
+    const [cvv, setCvv] = useState("");
+    const [errors, setErrors] = useState(null);
+
+    const handleSubmit = () => {
+        // TO DO validiraj
+        if (errors === null) onCreate({ cardNumber, cardHolderName, exparationDate, cvv, type })
+    };
+
+    const handleChange = e => {
+        const { id, value } = e.target;
+        if (id === "cardNumber") setCardNumber(parseInt(value))
+        if (id === "cardHolderName") setCardHolderName(value)
+        if (id === "cvv") setCvv(parseInt(value))
+    };
 
     return (
         <Grid container spacing={3} justify="space-around" alignItems="center">
             <Grid item xs={12}>
-                <TextField InputProps={{ className: classes.input }} required id="cardHolderName" label="Card holder name" variant="filled" fullWidth />
+                <TextField
+                    InputProps={{ className: classes.input, disableUnderline: true }}
+                    required
+                    id="cardHolderName"
+                    label="Card holder name"
+                    variant="filled"
+                    value={cardHolderName}
+                    onChange={handleChange}
+                    fullWidth />
             </Grid>
             <Grid item xs={12}>
-                <TextField InputProps={{ className: classes.input }} required id="cardNumber" label="Card number" variant="filled" fullWidth />
+                <TextField
+                    InputProps={{ className: classes.input, disableUnderline: true }}
+                    required id="cardNumber"
+                    label="Card number"
+                    variant="filled"
+                    value={cardNumber}
+                    onChange={handleChange}
+                    fullWidth />
             </Grid>
             <Grid item xs={6}>
                 <DatePicker
-                    InputProps={{ className: classes.dateInput, classes: { formControl: classes.dateMargin } }}
+                    InputProps={{ className: classes.dateInput, classes: { formControl: classes.dateMargin }, disableUnderline: true }}
                     InputLabelProps={{ classes: { formControl: classes.dateLabel } }}
                     inputProps={{ className: classes.dateInputRoot }}
                     margin="none"
@@ -86,12 +120,20 @@ const CardForm = props => {
                     variant="filled"
                     fullWidth
                     clearable
-                    value={selectedDate}
-                    onChange={date => handleDateChange(date)}
+                    value={exparationDate}
+                    onChange={date => setExparationDate(date)}
                 />
             </Grid>
             <Grid item xs={6}>
-                <TextField InputProps={{ className: classes.input }} required id="cvv" label="CVV" variant="filled" fullWidth />
+                <TextField
+                    InputProps={{ className: classes.input, disableUnderline: true }}
+                    required
+                    id="cvv"
+                    label="CVV"
+                    variant="filled"
+                    value={cvv}
+                    onChange={handleChange}
+                    fullWidth />
             </Grid>
             <Grid item >
                 <Button
@@ -107,6 +149,7 @@ const CardForm = props => {
                     variant="contained"
                     size="large"
                     className={clsx(classes.bottonNewCard, classes.bottonColor)}
+                    onClick={handleSubmit}
                 >
                     Add card
             </Button>
