@@ -11,6 +11,7 @@ import { Paper, Typography, Slide, Grid, Button } from "@material-ui/core";
 import Add from "@material-ui/icons/Add";
 
 import DashboardCardPanel from "./extensions/DashboardCardPanel";
+import { PAGE_CREATE_CARD, BASE } from "../../../assets/constants/appConstants";
 
 
 
@@ -65,7 +66,7 @@ const Dashboard = () => {
                 <Paper className={classes.paper}>
                     <Grid container direction="column" alignItems="center" spacing={2}>
                         <Grid item>
-                            <Button variant="outlined" startIcon={<Add />} className={classes.button} component={Link} to="/zakat/card">
+                            <Button variant="outlined" startIcon={<Add />} className={classes.button} component={Link} to={`/${BASE}/${PAGE_CREATE_CARD}`}>
                                 Add new card
                         </Button>
                         </Grid>
