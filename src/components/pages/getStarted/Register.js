@@ -61,7 +61,7 @@ const Register = ({ onCreate }) => {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [errors, setErrors] = useState(null);
+    const [errors, setErrors] = useState([]);
 
     const handleSubmit = () => {
         const _errors = []

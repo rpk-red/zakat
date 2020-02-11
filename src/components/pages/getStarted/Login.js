@@ -50,31 +50,17 @@ const useStyles = makeStyles({
     },
 });
 
-const getRandomId = () => {
-    return Math.floor(Math.random() * 10000);
-}
-
-const excludedItemArray = (array, item) => {
-    const arr = array ? [...array] : [];
-    var index = arr.indexOf(item);
-    if (index !== -1) arr.splice(index, 1);
-    if (arr.length === 0) return undefined;
-    return arr;
-}
-
 const Login = ({ onCreate }) => {
     const classes = useStyles();
     const history = useHistory();
 
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [errors, setErrors] = useState(null);
+    const [errors, setErrors] = useState([]);
 
     const handleSubmit = () => {
-        // TO DO validiraj
-        // if (errors === null) onCreate({ userName, email, phoneNumber, errors })
         const registerdUsers = JSON.parse(localStorage.getItem("registerdUsers"));
-        let _errors = [];
+        const _errors = [];
 
         const userByEmail = registerdUsers.find(user => user.email === email);
         const userByPhoneNumber = registerdUsers.find(user => user.phoneNumber === phoneNumber)
@@ -82,8 +68,8 @@ const Login = ({ onCreate }) => {
         const emailIsValid = Boolean(userByEmail);
         const phoneIsValid = Boolean(userByPhoneNumber);
 
-        if (!emailIsValid) _errors = _errors?.concat(["email"]);
-        if (!phoneIsValid) _errors = _errors?.concat(["phoneNumber"]);
+        if (!emailIsValid) _errors.push("email");
+        if (!phoneIsValid) _errors.push("phoneNumber");
 
         if (_errors.length > 0 || !emailIsValid || !phoneIsValid) {
             setErrors(_errors)
@@ -97,7 +83,7 @@ const Login = ({ onCreate }) => {
     };
 
     useEffect(() => {
-        if (errors?.phoneNumber && errors?.email) {
+        if (errors?.indexOf("email") > -1 && errors?.indexOf("phoneNumber") > -1) {
             const registerdUsers = JSON.parse(localStorage.getItem("registerdUsers"));
             const user = registerdUsers.find(user => user.phoneNumber === phoneNumber && user.email === email)
             sessionStorage.setItem("logedinUser", JSON.stringify(user))
@@ -108,7 +94,19 @@ const Login = ({ onCreate }) => {
     const handleChange = e => {
         const { id, value } = e.target;
         if (id === "email") setEmail(value)
+
+        if (value !== null && value !== undefined && value !== "") {
+            setErrors(errors.filter(el => el !== id));
+        }
     };
+
+    const handleChangePhoneNumber = phone => {
+        setPhoneNumber(phone)
+
+        if (phone !== null && phone !== undefined && phone !== "") {
+            setErrors(errors.filter(el => el !== "phoneNumber"));
+        }
+    }
 
     console.log("erorrs", errors);
     return (
@@ -132,8 +130,8 @@ const Login = ({ onCreate }) => {
                 <Grid container direction="column" spacing={3} justify="space-around" alignItems="stretch">
                     <Grid item>
                         <TextField
-                            error={Boolean(errors !== null && errors.indexOf("email") > -1)}
-                            helperText={errors !== null && errors.indexOf("email") > -1 && "wrong email"}
+                            error={errors?.indexOf("email") > -1}
+                            helperText={errors?.indexOf("email") > -1 && "wrong email"}
                             onChange={handleChange}
                             value={email}
                             InputProps={{ className: classes.input }}
@@ -151,9 +149,9 @@ const Login = ({ onCreate }) => {
                             variant="filled"
                             fullWidth
                             value={phoneNumber}
-                            onChange={phone => setPhoneNumber(phone)}
-                            error={Boolean(errors !== null && errors.indexOf("phoneNumber") > -1)}
-                            helperText={errors !== null && errors.indexOf("phoneNumber") > -1 && "wrong phone number"}
+                            onChange={phone => handleChangePhoneNumber(phone)}
+                            error={errors?.indexOf("phoneNumber") > -1}
+                            helperText={errors?.indexOf("phoneNumber") > -1 && "wrong phone number"}
                         />
                     </Grid>
                     <Grid item>
