@@ -62,7 +62,7 @@ const FooterBar = () => {
                             aria-label="icon tabs example"
                         >
                             <Tab component={Link} icon={<Home />} to={`/${BASE}`} aria-label="home" />
-                            <Tab component={Link} icon={<CreditCard />} to={`/${BASE}/${PAGE_CREATE_CARD}`} aria-label="dashboard" />
+                            <Tab component={Link} icon={<CreditCard />} to={`/${BASE}/${PAGE_CARD}`} aria-label="dashboard" />
                             <Tab component={Link} icon={<History />} to={`/${BASE}/${PAGE_TRANSACTIONS_HISTORY}`} aria-label="history" />
                             <Tab component={Link} icon={<Person />} to={`/${BASE}/${PAGE_USER_PROFILE}`} aria-label="profile" />
                         </Tabs>
