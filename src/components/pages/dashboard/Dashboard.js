@@ -22,7 +22,8 @@ const useStyles = makeStyles({
     },
     caption: {
         color: "white",
-        paddingBottom: 25
+        paddingBottom: 25,
+        paddingTop: 25
     },
     button: {
         minWidth: "20vw",
