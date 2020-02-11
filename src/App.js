@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Layout from './components/pages/shared/Layout';
 import Dashboard from './components/pages/dashboard/Dashboard';
@@ -21,8 +21,8 @@ const mockCards = [
   { id: 2, type: "visa", cardNumber: 555321, cardHolderName: "Marko", exparationDate: Date.now(), cvv: 256 },
   { id: 3, type: "mastercard", cardNumber: 666321, cardHolderName: "Pera", exparationDate: Date.now(), cvv: 266 },
   { id: 4, type: "revolut", cardNumber: 777321, cardHolderName: "Djole", exparationDate: Date.now(), cvv: 235 },
-  // { id: 6, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 271 },
-  // { id: 7, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 272 },
+  { id: 6, type: "visa", cardNumber: 321888, cardHolderName: "Zuga", exparationDate: Date.now(), cvv: 271 },
+  { id: 7, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 272 },
   // { id: 8, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 273 },
   // { id: 9, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 274 },
   // { id: 10, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 275 },
@@ -37,6 +37,20 @@ const getRandomId = () => { // TO DO: move in func file
   return Math.floor(Math.random() * 10000);
 }
 
+// const loggedIn = () => {
+//   const user = JSON.parse(sessionStorage.getItem('loggedInUser'));
+//   return user !== null && user !== undefined && user.id
+// }
+
+// function requireAuth(nextState, replace) {
+//   console.log("loggedIn", loggedIn());
+//   if (!loggedIn()) {
+//     replace({
+//       pathname: `/${PAGE_LOGIN}`
+//     })
+//   }
+// }
+
 const App = () => {
   const [cards, setCards] = useState(mockCards)
 
@@ -46,10 +60,24 @@ const App = () => {
 
   const handleCreateCard = newCard => {
     const newId = getRandomId();
-    console.log("newId", newId);
-    console.log("newCard", newCard);
     setCards([...cards, { ...newCard, id: newId }])
   }
+
+  const isLoggedIn = () => {
+    const user = JSON.parse(sessionStorage.getItem('loggedInUser'));
+    console.log("loggedIn", user !== null && user !== undefined && user.id);
+
+    return user !== null && user !== undefined && user.id
+  }
+
+  // const requireAuth = (nextState, replace) => {
+  //   console.log("loggedIn", loggedIn());
+  //   if (!loggedIn()) {
+  //     replace({
+  //       pathname: `/${PAGE_LOGIN}`
+  //     })
+  //   }
+  // }
 
   return (
     <Layout>
@@ -63,25 +91,55 @@ const App = () => {
         <Route path={`/${PAGE_LOGIN}`}>
           <Login />
         </Route>
-        <Route path={`/${PAGE_CARD}`}>
-          <Dashboard onDelete={handleDeleteCard} cards={cards} />
-        </Route>
-        <Route path={`/${PAGE_DASHBOARD}`}>
-          <Dashboard />
-        </Route>
-        <Route path={`/${PAGE_CREATE_CARD}/:type`}>
-          <CardCreate onCreate={handleCreateCard} />
-        </Route>
-        <Route path={`/${PAGE_USER_PROFILE}`}>
-          <Profile />
-        </Route>
-        <Route path={`/${PAGE_TRANSACTIONS_HISTORY}`}>
-          <TransactionHistory />
-        </Route>
+        <Route path={`/${PAGE_CARD}`} render={() => (
+          !isLoggedIn() ? (
+            <Redirect to={`/${PAGE_LOGIN}`} />
+          ) : (
+              <Dashboard onDelete={handleDeleteCard} cards={cards} />
+            )
+        )} />
+
+        <Route path={`/${PAGE_DASHBOARD}`} render={() => (
+          !isLoggedIn() ? (
+            <Redirect to={`/${PAGE_LOGIN}`} />
+          ) : (
+              <Dashboard />
+            )
+        )} />
+
+        <Route path={`/${PAGE_CREATE_CARD}/:type`} render={() => (
+          !isLoggedIn() ? (
+            <Redirect to={`/${PAGE_LOGIN}`} />
+          ) : (
+              <CardCreate onCreate={handleCreateCard} />
+            )
+        )} />
+
+        <Route path={`/${PAGE_USER_PROFILE}`} render={() => (
+          !isLoggedIn() ? (
+            <Redirect to={`/${PAGE_LOGIN}`} />
+          ) : (
+              <Profile />
+            )
+        )} />
+
+        <Route path={`/${PAGE_TRANSACTIONS_HISTORY}`} render={() => (
+          !isLoggedIn() ? (
+            <Redirect to={`/${PAGE_LOGIN}`} />
+          ) : (
+              <TransactionHistory />
+            )
+        )} />
+
       </Switch>
-      <Route path={`/${PAGE_HOME}`}>
-        <Home />
-      </Route>
+      <Route path={`/${PAGE_HOME}`} render={() => (
+        !isLoggedIn() ? (
+          <Redirect to={`/${PAGE_LOGIN}`} />
+        ) : (
+            <Home />
+          )
+      )} />
+
     </Layout >
   );
 }

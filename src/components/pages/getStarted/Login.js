@@ -76,7 +76,7 @@ const Login = ({ onCreate }) => {
             return;
         }
 
-        sessionStorage.setItem("logedinUser", JSON.stringify(userByPhoneNumber))
+        sessionStorage.setItem("loggedInUser", JSON.stringify(userByPhoneNumber))
         history.push(`/${PAGE_HOME}`);
 
 
@@ -86,7 +86,7 @@ const Login = ({ onCreate }) => {
         if (errors?.indexOf("email") > -1 && errors?.indexOf("phoneNumber") > -1) {
             const registerdUsers = JSON.parse(localStorage.getItem("registerdUsers"));
             const user = registerdUsers.find(user => user.phoneNumber === phoneNumber && user.email === email)
-            sessionStorage.setItem("logedinUser", JSON.stringify(user))
+            sessionStorage.setItem("loggedInUser", JSON.stringify(user))
         }
     }, [email, errors, phoneNumber]);
 
@@ -108,7 +108,6 @@ const Login = ({ onCreate }) => {
         }
     }
 
-    console.log("erorrs", errors);
     return (
         <Grid container direction="column" spacing={10} justify="space-around" alignItems="center" className={classes.container}>
             <Grid item>

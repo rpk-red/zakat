@@ -67,9 +67,9 @@ const ProfileForm = props => {
     const classes = useStyles()
     const history = useHistory();
 
-    const user = JSON.parse(sessionStorage.getItem('logedinUser'));
+    const user = JSON.parse(sessionStorage.getItem('loggedInUser'));
     const handleLogout = () => {
-        sessionStorage.setItem("logedinUser", undefined)
+        sessionStorage.setItem("loggedInUser", undefined)
         history.push(`/`);
     }
     return (
