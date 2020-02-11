@@ -15,7 +15,8 @@ const CardChip = ({ className }) => <img src={cardChipImg} alt="cardChipIcon" cl
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        maxWidth: 400,
+        boxSizing: "border-box",
+        maxWidth: 500,
         padding: 30,
         borderRadius: 12,
         backgroundColor: props => props.type === CARD_MASTERCARD ? "#051C3F" : props.type === CARD_REVOLUT ? "#349BFB" : "#0044AB"

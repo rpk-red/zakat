@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { Scrollbars } from 'react-custom-scrollbars';
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Typography, Slide, Grid, Button, IconButton } from "@material-ui/core";
+import { Paper, Typography, Slide, Grid, IconButton } from "@material-ui/core";
 
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import Add from "@material-ui/icons/Add";
 
 
 
@@ -24,7 +22,7 @@ const useStyles = makeStyles({
     },
     caption: {
         color: "white",
-        marginTop: 25
+        paddingTop: 25
     },
     buttonBack: {
         borderRadius: 10,
@@ -52,39 +50,43 @@ const CardCreate = props => {
 
     const classes = useStyles();
     return (
-        <>
-            <Grid container alignItems="baseline" justify="space-evenly">
-                <Grid item>
-                    <IconButton onClick={handleBack} className={classes.buttonBack}>
-                        <ArrowBackIosIcon className={classes.buttonBackIcon} />
-                    </IconButton>
+        <Grid container alignItems="baseline" justify="center">
+            <Grid item>
+                <Grid container alignItems="baseline" justify="center" spacing={4}>
+                    <Grid item xs={12}>
+                        <Grid container alignItems="baseline" justify="space-evenly">
+                            <Grid item >
+                                <IconButton onClick={handleBack} className={classes.buttonBack}>
+                                    <ArrowBackIosIcon className={classes.buttonBackIcon} />
+                                </IconButton>
+                            </Grid>
+                            <Grid item >
+                                <Typography variant="h5" className={classes.caption}>
+                                    Add new card
+                                </Typography>
+                            </Grid>
+                            <Grid item />
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} />
+                    <Grid item>
+                        <Slide direction="right" in mountOnEnter unmountOnExit>
+                            <div>
+                                <CardPanel />
+                            </div>
+                        </Slide>
+                    </Grid>
+                    <Grid item xs={12} />
+                    <Grid item>
+                        <Slide direction="right" in mountOnEnter unmountOnExit>
+                            <Paper className={classes.paper}>
+                                <CardForm />
+                            </Paper>
+                        </Slide>
+                    </Grid>
                 </Grid>
-                <Grid item>
-                    <Typography variant="h5" className={classes.caption}>
-                        Add new card
-                    </Typography>
-                </Grid>
-                <Grid item />
             </Grid>
-            <Grid container justify="center" alignItems="center" spacing={4}>
-                <Grid item xs={12} />
-                <Grid item>
-                    <Slide direction="right" in mountOnEnter unmountOnExit>
-                        <div>
-                            <CardPanel />
-                        </div>
-                    </Slide>
-                </Grid>
-                <Grid item xs={12} />
-                <Grid item>
-                    <Slide direction="right" in mountOnEnter unmountOnExit>
-                        <Paper className={classes.paper}>
-                            <CardForm />
-                        </Paper>
-                    </Slide>
-                </Grid>
-            </Grid>
-        </>
+        </Grid>
     )
 }
 
