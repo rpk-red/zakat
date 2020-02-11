@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1508897132c5a156b9d6fd66fb8481c3",
+    "revision": "54d4447d965b03a9eef6571c673244a9",
     "url": "/zakat/index.html"
   },
   {
-    "revision": "ead3636f77a6e6dcfccb",
+    "revision": "6d942c3ff496640e296a",
     "url": "/zakat/static/css/main.5ecd60fb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/zakat/static/js/2.641362f9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ead3636f77a6e6dcfccb",
-    "url": "/zakat/static/js/main.8527f599.chunk.js"
+    "revision": "6d942c3ff496640e296a",
+    "url": "/zakat/static/js/main.c54c28f6.chunk.js"
   },
   {
     "revision": "2a1922b702431e7e229e",
