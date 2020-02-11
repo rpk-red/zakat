@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/zakat/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/zakat/static/js/main.584b42c1.chunk.js",
-    "main.js.map": "/zakat/static/js/main.584b42c1.chunk.js.map",
+    "main.js": "/zakat/static/js/main.918833a5.chunk.js",
+    "main.js.map": "/zakat/static/js/main.918833a5.chunk.js.map",
     "runtime-main.js": "/zakat/static/js/runtime-main.4b935a40.js",
     "runtime-main.js.map": "/zakat/static/js/runtime-main.4b935a40.js.map",
     "static/js/2.641362f9.chunk.js": "/zakat/static/js/2.641362f9.chunk.js",
     "static/js/2.641362f9.chunk.js.map": "/zakat/static/js/2.641362f9.chunk.js.map",
     "index.html": "/zakat/index.html",
-    "precache-manifest.1759d833e04ef0e360815b06f21a8510.js": "/zakat/precache-manifest.1759d833e04ef0e360815b06f21a8510.js",
+    "precache-manifest.97a3cf34f4f167e6c85e5a6cf3bfdd3a.js": "/zakat/precache-manifest.97a3cf34f4f167e6c85e5a6cf3bfdd3a.js",
     "service-worker.js": "/zakat/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/zakat/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.641362f9.chunk.js.LICENSE.txt": "/zakat/static/js/2.641362f9.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.4b935a40.js",
     "static/js/2.641362f9.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.584b42c1.chunk.js"
+    "static/js/main.918833a5.chunk.js"
   ]
 }
