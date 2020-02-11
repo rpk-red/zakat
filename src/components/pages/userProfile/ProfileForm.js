@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { TextField, Button, Grid, makeStyles, Typography } from '@material-ui/core'
 
 import MuiPhoneNumber from 'material-ui-phone-number';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -64,15 +65,13 @@ const useStyles = makeStyles({
 
 const ProfileForm = props => {
     const classes = useStyles()
-    // const user = {
-    //     userName: "Test User",
-    //     email: "testUser@test.com",
-    //     phoneNumber: "1323123211"
-    // }
-    const user = sessionStorage.getItem('logedUser')
-    // const handleChange = e => {
+    const history = useHistory();
 
-    // }
+    const user = JSON.parse(sessionStorage.getItem('logedinUser'));
+    const handleLogout = () => {
+        sessionStorage.setItem("logedinUser", undefined)
+        history.push(`/`);
+    }
     return (
         <Grid container direction="column" spacing={3} justify="space-around" alignItems="stretch">
             <Grid item>
@@ -93,11 +92,9 @@ const ProfileForm = props => {
                     id="phoneNumber"
                     label="Phone number"
                     variant="filled"
-                    // disableDropdown
                     fullWidth
                     disabled
                     value={user.phoneNumber}
-                // handleChange={handleChange}
                 />
             </Grid>
             <Grid item>
@@ -114,6 +111,7 @@ const ProfileForm = props => {
                 <Button
                     variant="outlined"
                     size="large"
+                    onClick={handleLogout}
                     fullWidth
                     className={classes.buttonLogout}
                 >

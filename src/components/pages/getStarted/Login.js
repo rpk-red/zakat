@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import clsx from 'clsx';
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Grid, Typography, TextField } from '@material-ui/core'
 import MuiPhoneNumber from 'material-ui-phone-number';
 
 import zakatLogoImg from "../../../assets/images/zakatLogo.png";
-import { PAGE_REGISTER, PAGE_LOGIN } from '../../../assets/constants/appConstants';
+import { PAGE_REGISTER, PAGE_LOGIN, PAGE_HOME } from '../../../assets/constants/appConstants';
 
 
 
@@ -54,10 +54,18 @@ const getRandomId = () => {
     return Math.floor(Math.random() * 10000);
 }
 
+const excludedItemArray = (array, item) => {
+    const arr = array ? [...array] : [];
+    var index = arr.indexOf(item);
+    if (index !== -1) arr.splice(index, 1);
+    if (arr.length === 0) return undefined;
+    return arr;
+}
+
 const Login = ({ onCreate }) => {
     const classes = useStyles();
+    const history = useHistory();
 
-    const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [errors, setErrors] = useState(null);
@@ -66,23 +74,32 @@ const Login = ({ onCreate }) => {
         // TO DO validiraj
         // if (errors === null) onCreate({ userName, email, phoneNumber, errors })
         const registerdUsers = JSON.parse(localStorage.getItem("registerdUsers"));
+        let _errors = [];
 
-        const userByEmail = registerdUsers.filter(user => user.email === email);
-        const userByPhoneNumber = registerdUsers.filter(user => user.phoneNumber === phoneNumber)
+        const userByEmail = registerdUsers.find(user => user.email === email);
+        const userByPhoneNumber = registerdUsers.find(user => user.phoneNumber === phoneNumber)
 
-        if (userByEmail === null) setErrors({ email: "wrong email" });
-        if (userByPhoneNumber === null) setErrors({ email: "wrong phone number" });
+        const emailIsValid = Boolean(userByEmail);
+        const phoneIsValid = Boolean(userByPhoneNumber);
 
+        if (!emailIsValid) _errors = _errors?.concat(["email"]);
+        if (!phoneIsValid) _errors = _errors?.concat(["phoneNumber"]);
 
-        if (errors === null) {
-            sessionStorage.setItem("logedinUser", JSON.stringify(userByPhoneNumber))
+        if (_errors.length > 0 || !emailIsValid || !phoneIsValid) {
+            setErrors(_errors)
+            return;
         }
+
+        sessionStorage.setItem("logedinUser", JSON.stringify(userByPhoneNumber))
+        history.push(`/${PAGE_HOME}`);
+
+
     };
 
     useEffect(() => {
-        if (errors === null) {
+        if (errors?.phoneNumber && errors?.email) {
             const registerdUsers = JSON.parse(localStorage.getItem("registerdUsers"));
-            const user = registerdUsers.filter(user => user.phoneNumber === phoneNumber && user.email === email)
+            const user = registerdUsers.find(user => user.phoneNumber === phoneNumber && user.email === email)
             sessionStorage.setItem("logedinUser", JSON.stringify(user))
         }
     }, [email, errors, phoneNumber]);
@@ -90,11 +107,10 @@ const Login = ({ onCreate }) => {
 
     const handleChange = e => {
         const { id, value } = e.target;
-        if (id === "userName") setUserName(value)
         if (id === "email") setEmail(value)
     };
 
-
+    console.log("erorrs", errors);
     return (
         <Grid container direction="column" spacing={10} justify="space-around" alignItems="center" className={classes.container}>
             <Grid item>
@@ -116,9 +132,8 @@ const Login = ({ onCreate }) => {
                 <Grid container direction="column" spacing={3} justify="space-around" alignItems="stretch">
                     <Grid item>
                         <TextField
-                            error={Boolean(errors !== null && errors["email"])}
-                            helperText={errors !== null && errors["email"]}
-                            required
+                            error={Boolean(errors !== null && errors.indexOf("email") > -1)}
+                            helperText={errors !== null && errors.indexOf("email") > -1 && "wrong email"}
                             onChange={handleChange}
                             value={email}
                             InputProps={{ className: classes.input }}
@@ -137,9 +152,8 @@ const Login = ({ onCreate }) => {
                             fullWidth
                             value={phoneNumber}
                             onChange={phone => setPhoneNumber(phone)}
-                            required
-                            error={Boolean(errors !== null && errors["phoneNumber"])}
-                            helperText={errors !== null && errors["phoneNumber"]}
+                            error={Boolean(errors !== null && errors.indexOf("phoneNumber") > -1)}
+                            helperText={errors !== null && errors.indexOf("phoneNumber") > -1 && "wrong phone number"}
                         />
                     </Grid>
                     <Grid item>
