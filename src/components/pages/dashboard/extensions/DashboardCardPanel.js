@@ -13,10 +13,14 @@ import CardLogo from "../../../../assets/jss/LogoIcons";
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        width: 400,
-        height: 100,
+        boxSizing: "border-box",
+        minWidth: "20vw",
+        padding: 15,
         borderRadius: 12,
         backgroundColor: props => props.type === CARD_MASTERCARD ? "#051C3F" : props.type === CARD_REVOLUT ? "#349BFB" : "#0044AB"
+    },
+    colorTypography: {
+        color: props => props.type === CARD_VISA ? "#0044AB" : props.type === CARD_REVOLUT ? "#349BFB" : "white"
     },
     container: {
         height: "inherit"
@@ -29,12 +33,6 @@ const useStyles = makeStyles(theme => ({
         fontWeight: "normal",
         fontSize: 16,
         letterSpacing: -0.3
-    },
-    paddingLeft: {
-        paddingLeft: 20
-    },
-    gridItem: {
-        textAlign: "center"
     }
 }));
 
@@ -47,16 +45,16 @@ const DashboardCardPanel = (props) => {
             <Grid container justify="space-between" alignItems="center" className={classes.container}>
                 <Grid item>
                     <Grid container justify="flex-start" alignItems="center" spacing={1}>
-                        <Grid item className={classes.gridItem}>
-                            <CardLogo type={type} className={classes.paddingLeft} />
+                        <Grid item>
+                            <CardLogo type={type} />
                         </Grid>
-                        {type === CARD_MASTERCARD && <Grid item >
-                            <Typography className={clsx(classes.colorWhite, classes.typography)} align="left">
-                                Mastercard
+                        <Grid item >
+                            <Typography className={clsx(classes.colorTypography, classes.typography)} align="left">
+                                {type === CARD_REVOLUT ? "Maste" : "Mastercard"}
                             </Typography>
-                        </Grid>}
+                        </Grid>
                         <Grid item xs={12}>
-                            <Typography className={clsx(classes.colorWhite, classes.typography, classes.paddingLeft)}>
+                            <Typography className={clsx(classes.colorWhite, classes.typography)}>
                                 *** {cardNumber.toString().slice(0, cardNumber.toString().length - 2)}
                             </Typography>
                         </Grid>

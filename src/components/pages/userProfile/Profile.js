@@ -10,13 +10,7 @@ import ProfileForm from "./ProfileForm";
 
 
 const useStyles = makeStyles({
-    root: {
-        height: "calc(100vh - 60px)",
-        position: "fixed",
-        width: "100%"
-    },
     paper: {
-
         borderRadius: 30,
         padding: 60,
         marginTop: -85
@@ -36,34 +30,26 @@ const useStyles = makeStyles({
         color: "#5EA7FF",
         paddingLeft: 7
     },
-
-    formContainer: {
-        width: 600
-    }
 });
 
 
 const Profile = props => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <Grid container direction="column" justify="center" alignItems="center" spacing={0}>
-                <Grid item>
-                    <Slide direction="up" in mountOnEnter unmountOnExit>
-                        <img src={img} alt="profileBackground" width="600" height="400" />
-                    </Slide>
-                </Grid>
-                <Grid item className={classes.formContainer}>
-                    <Slide direction="up" in mountOnEnter unmountOnExit>
-                        <Paper className={classes.paper} elevation={20}>
-                            <div>
-                                <ProfileForm />
-                            </div>
-                        </Paper>
-                    </Slide>
-                </Grid>
+        <Grid container direction="column" justify="flex-start" alignItems="center" spacing={0}>
+            <Grid item>
+                <Slide direction="right" in mountOnEnter unmountOnExit>
+                    <img src={img} alt="profileBackground" />
+                </Slide>
             </Grid>
-        </div>
+            <Grid item>
+                <Slide direction="right" in mountOnEnter unmountOnExit>
+                    <Paper className={classes.paper} elevation={20}>
+                        <ProfileForm />
+                    </Paper>
+                </Slide>
+            </Grid>
+        </Grid>
     )
 }
 

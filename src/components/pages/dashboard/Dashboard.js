@@ -15,20 +15,18 @@ import DashboardCardPanel from "./extensions/DashboardCardPanel";
 
 
 const useStyles = makeStyles({
-    root: {
-        height: "calc(100vh - 60px)"
-    },
     paper: {
+        boxSizing: "border-box",
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        padding: 15,
+        padding: 30,
     },
     caption: {
         color: "white",
-        marginBottom: 25
+        paddingBottom: 25
     },
     button: {
-        width: 400,
+        minWidth: "20vw",
         color: "#A8C3EC",
         borderRadius: 8
     }
@@ -38,8 +36,17 @@ const mockCards = [
     { id: 1, type: "mastercard", cardNumber: 321321, cardHolderName: "Bojan", exparationDate: Date.now(), cvv: 255 },
     { id: 2, type: "visa", cardNumber: 555321, cardHolderName: "Marko", exparationDate: Date.now(), cvv: 256 },
     { id: 3, type: "mastercard", cardNumber: 666321, cardHolderName: "Pera", exparationDate: Date.now(), cvv: 266 },
-    { id: 4, type: "revolut", cardNumber: 777321, cardHolderName: "Djole", exparationDate: Date.now(), cvv: 275 },
-    { id: 5, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 277 }
+    { id: 4, type: "revolut", cardNumber: 777321, cardHolderName: "Djole", exparationDate: Date.now(), cvv: 235 },
+    { id: 6, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 271 },
+    { id: 7, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 272 },
+    { id: 8, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 273 },
+    { id: 9, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 274 },
+    { id: 10, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 275 },
+    { id: 11, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 276 },
+    { id: 12, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 277 },
+    { id: 13, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 278 },
+    { id: 14, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 279 }
+
 ]
 
 const Dashboard = () => {
@@ -50,7 +57,7 @@ const Dashboard = () => {
         setRows(rows.filter(r => r.id !== id))
     }
     return (
-        <Grid container direction="column" justify="flex-end" alignItems="center" className={classes.root}>
+        <Grid container direction="column" justify="flex-end" alignItems="center">
             <Typography variant="h5" className={classes.caption}>
                 My Cards
             </Typography>
@@ -64,7 +71,9 @@ const Dashboard = () => {
                         </Grid>
                         <Grid item>
                             <Scrollbars
-                                style={{ width: 625, height: 700 }}
+                                autoHeight
+                                autoHeightMin={200}
+                                autoHeightMax={600}
                                 renderTrackHorizontal={props => <div {...props} style={{ display: 'none' }} className="track-horizontal" />}
                                 renderView={props => (
                                     <div {...props} style={{ ...props.style, overflowX: 'hidden' }} />

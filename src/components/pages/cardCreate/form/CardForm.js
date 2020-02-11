@@ -54,17 +54,11 @@ const useStyles = makeStyles({
         backgroundColor: "#5EA7FF"
     },
     bottonNewCard: {
-        width: 200
+        minWidth: 200
     },
     dateLabel: {
         color: "#A8C3EC",
-        zIndex: 1,
-        // pointerEvents: 'none',
         paddingLeft: 12,
-        // transform: 'translate(12px, 20px) scale(1)',
-        // '&:active': {
-        //     transform: 'translate(12px, 10px) scale(0.75)'
-        // }
     },
 });
 

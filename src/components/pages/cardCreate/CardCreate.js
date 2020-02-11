@@ -16,15 +16,11 @@ import CardForm from "./form/CardForm";
 import CardPanel from "./CardPanel";
 
 const useStyles = makeStyles({
-    root: {
-        height: "calc(100vh - 60px)",
-        position: "fixed",
-        width: "100%"
-    },
     paper: {
-
+        boxSizing: "border-box",
         borderRadius: 30,
         padding: 60,
+        maxWidth: 500
     },
     caption: {
         color: "white",
@@ -32,8 +28,6 @@ const useStyles = makeStyles({
     },
     buttonBack: {
         borderRadius: 10,
-        // marginLeft: 25,
-        // marginTop: 15,
         backgroundColor: "white",
         "&:hover": {
             backgroundColor: "rgba(255, 255, 255, 0.6)"
@@ -43,15 +37,6 @@ const useStyles = makeStyles({
         color: "#5EA7FF",
         paddingLeft: 7
     },
-    // button: {
-    //     width: 400,
-    //     color: "#A8C3EC",
-    //     borderRadius: 8
-    // },
-
-    formContainer: {
-        width: 600
-    }
 });
 
 
@@ -67,7 +52,7 @@ const CardCreate = props => {
 
     const classes = useStyles();
     return (
-        <div className={classes.root}>
+        <>
             <Grid container alignItems="baseline" justify="space-evenly">
                 <Grid item>
                     <IconButton onClick={handleBack} className={classes.buttonBack}>
@@ -81,8 +66,8 @@ const CardCreate = props => {
                 </Grid>
                 <Grid item />
             </Grid>
-            <Grid container direction="column" justify="center" alignItems="center" spacing={10}>
-                <Grid item />
+            <Grid container justify="center" alignItems="center" spacing={4}>
+                <Grid item xs={12} />
                 <Grid item>
                     <Slide direction="right" in mountOnEnter unmountOnExit>
                         <div>
@@ -90,17 +75,16 @@ const CardCreate = props => {
                         </div>
                     </Slide>
                 </Grid>
-                <Grid item className={classes.formContainer}>
+                <Grid item xs={12} />
+                <Grid item>
                     <Slide direction="right" in mountOnEnter unmountOnExit>
                         <Paper className={classes.paper}>
-                            <div>
-                                <CardForm />
-                            </div>
+                            <CardForm />
                         </Paper>
                     </Slide>
                 </Grid>
             </Grid>
-        </div>
+        </>
     )
 }
 
