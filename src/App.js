@@ -51,7 +51,7 @@ const App = () => {
   return (
     <Layout>
       <Switch>
-        <Route exact path={`/${BASE}/`}>
+        <Route exact path={`/`}>
           <GetStarted />
         </Route>
         <Route path={`/${PAGE_REGISTER}`}>
