@@ -9,6 +9,9 @@ import Profile from './components/pages/userProfile/Profile';
 import TransactionHistory from './components/pages/transactionHistory/TransactionHistory';
 import Home from './components/pages/home/Home';
 import GetStarted from "./components/pages/getStarted/GetStarted";
+import Register from "./components/pages/getStarted/Register";
+import Login from "./components/pages/getStarted/Login";
+
 
 import { PAGE_DASHBOARD, PAGE_CREATE_CARD, PAGE_CARD, PAGE_USER_PROFILE, PAGE_TRANSACTIONS_HISTORY, BASE, PAGE_HOME, PAGE_REGISTER, PAGE_LOGIN } from './assets/constants/appConstants';
 
@@ -55,10 +58,10 @@ const App = () => {
           <GetStarted />
         </Route>
         <Route path={`/${PAGE_REGISTER}`}>
-          <Home />
+          <Register />
         </Route>
         <Route path={`/${PAGE_LOGIN}`}>
-          <Home />
+          <Login />
         </Route>
         <Route path={`/${PAGE_CARD}`}>
           <Dashboard onDelete={handleDeleteCard} cards={cards} />
