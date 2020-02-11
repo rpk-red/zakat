@@ -21,6 +21,10 @@ import { PAGE_CREATE_CARD, BASE, CARD_MASTERCARD, CARD_REVOLUT, CARD_VISA } from
 
 
 const useStyles = makeStyles({
+    container: {
+        width: "100%",
+        margin: 0
+    },
     paper: {
         boxSizing: "border-box",
         borderRadius: 30,
@@ -30,6 +34,11 @@ const useStyles = makeStyles({
         color: "white",
         paddingBottom: 25,
         paddingTop: 25
+    },
+    captionTable: {
+        color: "#A8C3EC",
+        paddingBottom: 25,
+        paddingTop: 35
     },
     button: {
         minWidth: "20vw",
@@ -73,10 +82,10 @@ const Dashboard = ({ cards, onDelete }) => {
     }, [open]);
     return (
         <>
-            <Grid container direction="column" justify="flex-end" alignItems="center">
+            <Grid container direction="column" justify="flex-end" alignItems="center" className={classes.container}>
                 <Typography variant="h5" className={classes.caption}>
                     My Cards
-            </Typography>
+                </Typography>
                 <Slide direction="right" in mountOnEnter unmountOnExit>
                     <Paper className={classes.paper}>
                         <Grid container direction="column" alignItems="center" spacing={2} >
@@ -107,6 +116,11 @@ const Dashboard = ({ cards, onDelete }) => {
                                                 <DashboardCardPanel {...card} onDelete={onDelete} />
                                             </Grid>
                                         )}
+                                        <Grid item key="empty_dashboard">
+                                            {cards.length === 0 && <Typography variant="h5" className={classes.captionTable}>
+                                                No Data
+                                            </Typography>}
+                                        </Grid>
                                     </Grid>
                                 </Scrollbars>
                             </Grid>

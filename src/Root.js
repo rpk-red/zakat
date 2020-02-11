@@ -30,13 +30,14 @@ const theme = createMuiTheme({
                 borderTopLeftRadius: 8,
                 borderTopRightRadius: 8,
                 borderBottomLeftRadius: 8,
-                borderBottomRightRadius: 8
+                borderBottomRightRadius: 8,
+                "&$disabled": {
+                    backgroundColor: "#F4F9FE",
+                    borderBottom: "none",
+                    borderRadius: 8
+                }
             },
-            disabled: {
-                backgroundColor: "#F4F9FE",
-                borderBottom: "none",
-                borderRadius: 8
-            },
+            disabled: {},
             input: {
                 "&:disabled": {
                     backgroundColor: "#F4F9FE",
@@ -58,9 +59,6 @@ const theme = createMuiTheme({
                     borderBottom: "none",
                     borderBottomStyle: "none"
                 },
-            },
-            "root.Mui-disabled:before": {
-                backgroundColor: "#F4F9FE"
             }
         }
     }

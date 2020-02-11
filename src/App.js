@@ -33,7 +33,7 @@ const mockCards = [
 
 ]
 
-const getRandomId = () => {
+const getRandomId = () => { // TO DO: move in func file
   return Math.floor(Math.random() * 10000);
 }
 

@@ -76,7 +76,7 @@ const TransactionHistory = props => {
                                 <Grid container direction="column" alignItems="center" spacing={2}>
                                     {rows.map(card =>
                                         <Grid item key={card.id}>
-                                            <div {...card} onDelete={handleDelete} />
+                                            <div  />
                                         </Grid>
                                     )}
                                 </Grid>

@@ -14,11 +14,10 @@ import History from "@material-ui/icons/History";
 import Person from "@material-ui/icons/Person";
 import Home from "@material-ui/icons/Home";
 import CreditCard from "@material-ui/icons/CreditCard";
-import { PAGE_DASHBOARD, PAGE_HOME, PAGE_USER_PROFILE, PAGE_TRANSACTIONS_HISTORY, BASE, PAGE_CREATE_CARD, PAGE_CARD } from '../../../assets/constants/appConstants';
+import { PAGE_DASHBOARD, PAGE_HOME, PAGE_USER_PROFILE, PAGE_TRANSACTIONS_HISTORY, PAGE_CARD } from '../../../assets/constants/appConstants';
 
 
 const useStyles = makeStyles(theme => ({
-
     appBar: {
         top: 'auto',
         bottom: 0,
@@ -33,15 +32,12 @@ const FooterBar = () => {
 
     useEffect(() => {
         if (pathname.includes(PAGE_HOME)) setValue(0)
-        if (pathname === `/${BASE}`) setValue(0)
-        if (pathname === `/${BASE}/`) setValue(0)
         if (pathname.includes(PAGE_CARD)) setValue(1)
         if (pathname.includes(PAGE_TRANSACTIONS_HISTORY)) setValue(2)
         if (pathname.includes(PAGE_USER_PROFILE)) setValue(3)
     }, [pathname]);
 
-    const showFooter = pathname === `/${BASE}/` ||
-        pathname === `/${BASE}` ||
+    const showFooter =
         pathname.includes(PAGE_HOME) ||
         pathname.includes(PAGE_DASHBOARD) ||
         pathname.includes(PAGE_TRANSACTIONS_HISTORY) ||

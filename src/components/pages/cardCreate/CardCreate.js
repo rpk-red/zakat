@@ -14,6 +14,10 @@ import CardForm from "./form/CardForm";
 import CardPanel from "./CardPanel";
 
 const useStyles = makeStyles({
+    container: {
+        width: "100%",
+        margin: 0
+    },
     paper: {
         boxSizing: "border-box",
         borderRadius: 30,
@@ -47,7 +51,7 @@ const CardCreate = ({ onCreate }) => {
 
     const classes = useStyles();
     return (
-        <Grid container alignItems="baseline" justify="center">
+        <Grid container alignItems="baseline" justify="center" className={classes.container}>
             <Grid item>
                 <Grid container alignItems="baseline" justify="center" spacing={4}>
                     <Grid item xs={12}>

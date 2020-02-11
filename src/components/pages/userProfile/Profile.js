@@ -10,13 +10,18 @@ import ProfileForm from "./ProfileForm";
 
 
 const useStyles = makeStyles({
+    container: {
+        width: "100%",
+        margin: 0
+    },
     paper: {
         borderRadius: 30,
-        paddingTop: 30,
-        paddingBottom: 30,
-        paddingRight: 80,
-        paddingLeft: 80,
-        marginTop: -85
+        padding: 60,
+        // paddingTop: 30,
+        // paddingBottom: 30,
+        // paddingRight: 80,
+        // paddingLeft: 80,
+        marginTop: -75
     },
     caption: {
         color: "white",
@@ -39,7 +44,7 @@ const useStyles = makeStyles({
 const Profile = props => {
     const classes = useStyles();
     return (
-        <Grid container direction="column" justify="flex-start" alignItems="center" spacing={0}>
+        <Grid container direction="column" justify="flex-start" alignItems="center" spacing={0} className={classes.container}>
             <Grid item>
                 <Slide direction="right" in mountOnEnter unmountOnExit>
                     <img src={img} alt="profileBackground" />
