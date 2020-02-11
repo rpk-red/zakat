@@ -22,34 +22,23 @@ const mockCards = [
   { id: 3, type: "mastercard", cardNumber: 666321, cardHolderName: "Pera", exparationDate: Date.now(), cvv: 266 },
   { id: 4, type: "revolut", cardNumber: 777321, cardHolderName: "Djole", exparationDate: Date.now(), cvv: 235 },
   { id: 6, type: "visa", cardNumber: 321888, cardHolderName: "Zuga", exparationDate: Date.now(), cvv: 271 },
-  { id: 7, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 272 },
-  // { id: 8, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 273 },
-  // { id: 9, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 274 },
-  // { id: 10, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 275 },
-  // { id: 11, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 276 },
-  // { id: 12, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 277 },
-  // { id: 13, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 278 },
-  // { id: 14, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 279 }
-
+  { id: 7, type: "visa", cardNumber: 321888, cardHolderName: "Miljan", exparationDate: Date.now(), cvv: 272 }
 ]
 
 const getRandomId = () => { // TO DO: move in func file
   return Math.floor(Math.random() * 10000);
 }
 
-// const loggedIn = () => {
-//   const user = JSON.parse(sessionStorage.getItem('loggedInUser'));
-//   return user !== null && user !== undefined && user.id
-// }
+const isLoggedIn = () => {
+  const userString = sessionStorage.getItem('loggedInUser');
+  let user = undefined;
+  if (userString === "null" || userString === "undefined" || userString === "") return false;
 
-// function requireAuth(nextState, replace) {
-//   console.log("loggedIn", loggedIn());
-//   if (!loggedIn()) {
-//     replace({
-//       pathname: `/${PAGE_LOGIN}`
-//     })
-//   }
-// }
+  user = JSON.parse(userString);
+
+  return user !== null && user !== undefined && user.id
+}
+
 
 const App = () => {
   const [cards, setCards] = useState(mockCards)
@@ -62,22 +51,6 @@ const App = () => {
     const newId = getRandomId();
     setCards([...cards, { ...newCard, id: newId }])
   }
-
-  const isLoggedIn = () => {
-    const user = JSON.parse(sessionStorage.getItem('loggedInUser'));
-    console.log("loggedIn", user !== null && user !== undefined && user.id);
-
-    return user !== null && user !== undefined && user.id
-  }
-
-  // const requireAuth = (nextState, replace) => {
-  //   console.log("loggedIn", loggedIn());
-  //   if (!loggedIn()) {
-  //     replace({
-  //       pathname: `/${PAGE_LOGIN}`
-  //     })
-  //   }
-  // }
 
   return (
     <Layout>
