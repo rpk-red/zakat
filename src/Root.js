@@ -68,7 +68,7 @@ const theme = createMuiTheme({
 });
 const Root = () => (
     <ThemeProvider theme={theme}>
-        <Router basename={`/${BASE}`}>
+        <Router basename="/">
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <App />
             </MuiPickersUtilsProvider>
