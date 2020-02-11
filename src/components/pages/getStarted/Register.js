@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import clsx from 'clsx';
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Grid, Typography, TextField } from '@material-ui/core'
@@ -56,6 +56,7 @@ const getRandomId = () => {
 
 const Register = ({ onCreate }) => {
     const classes = useStyles();
+    const history = useHistory();
 
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
@@ -66,14 +67,18 @@ const Register = ({ onCreate }) => {
         // TO DO validiraj
         // if (errors === null) onCreate({ userName, email, phoneNumber, errors })
         if (errors === null) {
-            const registerdUsers = JSON.parse(localStorage.getItem("registerdUsers"));
+            const registerdUsers = JSON.parse(localStorage.getItem("registerdUsers")) || [];
             const id = getRandomId();
+            console.log("registerdUsers")
+            // const users = [
+            //     ...registerdUsers, { userName, email, phoneNumber, id }
+            // ]
+            const users =
+                registerdUsers.concat([{ userName, email, phoneNumber, id }])
 
-            const users = {
-                ...registerdUsers, [id]: { userName, email, phoneNumber }
-            }
 
             localStorage.setItem("registerdUsers", JSON.stringify(users))
+            history.push(`/${PAGE_LOGIN}`);
         }
     };
 
@@ -135,7 +140,7 @@ const Register = ({ onCreate }) => {
                     </Grid>
                     <Grid item>
                         <Typography className={classes.colorWhite} display="inline">
-                            Alreay have an account?
+                            Already have an account?
                         </Typography>
                         <Typography className={classes.colorBlue} display="inline" component={Link} to={`/${PAGE_LOGIN}`}>
                             {" "} Log in
